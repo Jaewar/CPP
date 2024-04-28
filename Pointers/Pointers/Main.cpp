@@ -24,7 +24,7 @@ int main() {
 	memset(buffer, 0, 8);
 
 	// creating a pointer to a pointer
-	chat** ptr = &buffer;
+	char** ptr = &buffer;
 
 	// deleting the memory that was allocated.
 	delete[] buffer;
