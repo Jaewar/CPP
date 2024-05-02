@@ -23,4 +23,10 @@ int jumpSearch(int arr[], int x, int n);
 // Interpolation Search requires a sorted array, works in a way we search for a word in a dictionary. The interpolation search algorithm improves the binary search algorithm.
 int interpolationSearch(int arr[], int lo, int hi, int x);
 
+// Exponential Search, given a sorted array, finds range of element to find and does a binary search in the range.
+int exponentialSearch(int arr[], int n, int x);
+
+// Fibonacci Search, given a sorted array, comparison-based search using Fibonacci numbers.
+int fibonacciSearch(int arr[], int x, int n);
+
 

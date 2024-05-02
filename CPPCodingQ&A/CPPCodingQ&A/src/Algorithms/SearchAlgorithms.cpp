@@ -161,3 +161,69 @@ int interpolationSearch(int arr[], int lo, int hi, int x)
 	}
 	return -1;
 }
+
+int exponentialSearch(int arr[], int n, int x)
+{
+	// check is x is at first location
+	if (arr[0] == x) return 0;
+
+	// find range for binary search by repeated doubling.
+	int i = 1;
+	while (i < n && arr[i] <= x)
+		i = i * 2;
+
+	// with found range call binary search
+	return binarySearch(arr, i / 2, min(i, n - 1), x);
+}
+
+int fibonacciSearch(int arr[], int x, int n)
+{
+	// Initializing Fibonacci numbers.
+	int fibMMm2 = 0; // (m-2)'th Fib No.
+	int fibMMm1 = 1; // (m-1)'th Fib No.
+	int fibM = fibMMm2 + fibMMm1; // (m'th Fib)
+
+	// fibM stores the smallest fib no. great than or equal to n.
+	while (fibM < n)
+	{
+		fibMMm2 = fibMMm1;
+		fibMMm1 = fibM;
+		fibM = fibMMm2 + fibMMm1;
+	}
+
+	// marks teh eliminated range from front.
+	int offset = -1;
+
+	// Comparing arr[fibMMm2] with x.
+	while (fibM > 1)
+	{
+		// check that fibMMm2 is valid
+		int i = min(offset + fibMMm2, n - 1);
+
+		// if x is greater cut the subarray array from offset to i.
+		if (arr[i] < x)
+		{
+			fibM = fibMMm1;
+			fibMMm1 = fibMMm2;
+			fibMMm2 = fibM - fibMMm1;
+			offset = i;
+		}
+
+		// is x is greater than the value at findex fibMMm2, cut the subarray after i + 1
+		else if (arr[i] > x)
+		{
+			fibM = fibMMm2;
+			fibMMm1 = fibMMm1 - fibMMm2;
+			fibMMm2 = fibM - fibMMm1;
+		}
+
+		// element not found;
+		else return i;
+	}
+
+	// checking last element
+	if (fibMMm1 && arr[offset + 1] == x)
+		return offset + 1;
+
+	return -1;
+}

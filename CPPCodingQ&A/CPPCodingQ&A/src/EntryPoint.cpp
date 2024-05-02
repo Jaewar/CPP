@@ -23,13 +23,13 @@ int main()
 		? std::cout << "Element not in array." << std::endl 
 		: std::cout << "Element present at index " << resultLS << std::endl;
 
-	Log("=========================");
+	Log("=========================\n");
 
 	Log("Sentinel Linear Search");
 	int key = 5;
 	sentinelSearch(arr, key);
 
-	Log("=========================");
+	Log("=========================\n");
 
 	Log("Binary Search");
 	int sX = 8;
@@ -38,7 +38,7 @@ int main()
 		? std::cout << "Element not in array." << std::endl
 		: std::cout << "Element present at index " << resultBS << std::endl;
 
-	Log("=========================");
+	Log("=========================\n");
 
 	Log("Ternary Search");
 	int keyTS = 8;
@@ -46,20 +46,39 @@ int main()
 
 	std::cout << "Index of " << keyTS << " is " << resultTS << std::endl;
 
-	Log("=========================");
+	Log("=========================\n");
 	Log("Jump Search");
 	int jsX = 7;
 	int resultJS = jumpSearch(sortedArr, jsX, sizeSortedArr);
 
 	std::cout << "Number " << x << " is at index " << resultJS << std::endl;
 
-	Log("=========================");
+	Log("=========================\n");
 	Log("Interpolation Search");
 	int isX = 4;
 	int resultIS = interpolationSearch(sortedArr, 0, sizeSortedArr - 1, isX);
 	(resultIS == -1)
 		? std::cout << "Element not in array." << std::endl
 		: std::cout << "Element present at index " << resultIS << std::endl;
+
+	Log("=========================\n");
+	Log("Exponential Search");
+	int esX = 4;
+	int resultES = exponentialSearch(sortedArr, sizeSortedArr, esX);
+	(resultES == -1)
+		? std::cout << "Element not in array." << std::endl
+		: std::cout << "Element present at index " << resultES << std::endl;
+
+
+	Log("=========================\n");
+	Log("Fibonacci Search");
+	int xFS = 8;
+	int resultFS = fibonacciSearch(sortedArr, xFS, sizeSortedArr);
+
+	if (resultFS >= 0)
+		std::cout << "Found at index: " << resultFS << std::endl;
+	else
+		std::cout << xFS << " is not present in array." << std::endl;
 }
 
 void Log(const char* message)
